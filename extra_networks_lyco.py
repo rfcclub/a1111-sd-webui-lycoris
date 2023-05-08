@@ -1,5 +1,6 @@
 from modules import extra_networks, shared
 import lycoris
+import re
 
 
 default_args = [
@@ -17,6 +18,8 @@ def parse_args(params:list):
         if '=' in str(i):
             k, v = i.split('=', 1)
             kwarg_list[k] = v
+        elif re.search(r'[a-zA-Z]',str(i)) or ',' in str(i):
+            kwarg_list[i] = i
         else:
             arg_list.append(i)
     
